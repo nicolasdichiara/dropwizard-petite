@@ -1,6 +1,9 @@
 package com.github.mtakaki.dropwizard.petite;
 
+import static io.dropwizard.util.Resources.getResource;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.File;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +14,6 @@ import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-import io.dropwizard.testing.FixtureHelpers;
 import jodd.petite.PetiteConfig;
 import jodd.petite.PetiteContainer;
 
@@ -24,7 +26,7 @@ public class PetiteManagedTest {
     @BeforeEach
     public void setUp() throws Exception {
         final PetiteConfiguration configuration = MAPPER.readValue(
-                FixtureHelpers.fixture("config_short_name_automagic.yml"),
+        		new File(getResource("config_short_name_automagic.yml").toURI()),
                 PetiteConfiguration.class);
         this.petiteManaged = new PetiteManaged(configuration, new MetricRegistry());
 

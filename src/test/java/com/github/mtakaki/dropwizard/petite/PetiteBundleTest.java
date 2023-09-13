@@ -15,10 +15,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
 
-import io.dropwizard.Configuration;
+import io.dropwizard.core.Configuration;
 import io.dropwizard.lifecycle.setup.LifecycleEnvironment;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
 
 @ExtendWith(MockitoExtension.class)
 public class PetiteBundleTest {

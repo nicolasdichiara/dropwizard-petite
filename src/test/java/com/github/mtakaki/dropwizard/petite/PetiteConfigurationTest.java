@@ -1,6 +1,9 @@
 package com.github.mtakaki.dropwizard.petite;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static io.dropwizard.util.Resources.getResource;
+
+import java.io.File;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +12,6 @@ import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-import io.dropwizard.testing.FixtureHelpers;
 import jodd.petite.PetiteConfig;
 import jodd.petite.PetiteContainer;
 
@@ -30,7 +32,7 @@ public class PetiteConfigurationTest {
         this.expectedConfiguration.setUseFullTypeNames(false);
 
         this.configuration = MAPPER.readValue(
-                FixtureHelpers.fixture("config_short_name_automagic.yml"),
+                new File(getResource("config_short_name_automagic.yml").toURI()),
                 PetiteConfiguration.class);
     }
 
@@ -47,7 +49,7 @@ public class PetiteConfigurationTest {
     @Test
     public void testBuildNamingStrategyWithFullName() throws Exception {
         assertThat(MAPPER.readValue(
-                FixtureHelpers.fixture("config_full_name_automagic.yml"),
+        		new File(getResource("config_full_name_automagic.yml").toURI()),
                 PetiteConfiguration.class).isUseFullTypeNames()).isTrue();
     }
 
